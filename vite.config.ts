@@ -3,15 +3,16 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import fs from 'fs';
+import type { ServerOptions } from 'vite';
 
-const getHttpsConfig = () => {
+const getHttpsConfig = (): ServerOptions['https'] => {
   try {
     return {
       key: fs.readFileSync('./.cert/key.pem'),
       cert: fs.readFileSync('./.cert/cert.pem'),
     };
   } catch (e) {
-    return false;
+    return undefined;
   }
 };
 
