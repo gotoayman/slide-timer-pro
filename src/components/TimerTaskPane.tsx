@@ -22,22 +22,24 @@ export const TimerTaskPane = () => {
         }
       });
 
-      // Insert the timer shape
-      await PowerPoint.run(async (context) => {
-        const slide = context.presentation.getActiveSlide();
-        // Add a shape to hold the timer
-        const shape = slide.shapes.addTextBox("00:00");
-        shape.left = 100;
-        shape.top = 100;
-        shape.width = 200;
-        shape.height = 100;
-        
-        await context.sync();
-        
-        toast({
-          title: t('timerInserted'),
-          description: t('timerInsertedDesc', { minutes }),
-        });
+      // Get the current slide
+      Office.context.document.setSelectedDataAsync("00:00", {
+        coercionType: Office.CoercionType.Text,
+        asyncContext: minutes
+      }, (asyncResult) => {
+        if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+          console.error('Error:', asyncResult.error.message);
+          toast({
+            variant: "destructive",
+            title: t('error'),
+            description: t('errorInsertingTimer'),
+          });
+        } else {
+          toast({
+            title: t('timerInserted'),
+            description: t('timerInsertedDesc', { minutes }),
+          });
+        }
       });
     } catch (error) {
       console.error('Error inserting timer:', error);
