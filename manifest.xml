@@ -10,13 +10,13 @@
     <DefaultLocale>en-US</DefaultLocale>
     <DisplayName DefaultValue="PowerPoint Timer Add-in" />
     <Description DefaultValue="Add countdown timers to your PowerPoint presentations." />
-    <IconUrl DefaultValue="https://localhost:8080/favicon.ico" />
-    <SupportUrl DefaultValue="https://localhost:8080" />
+    <IconUrl DefaultValue="https://lovable.dev/projects/4a3c6d0c-9f3f-4353-b18a-e636e6ec746a/favicon.ico" />
+    <SupportUrl DefaultValue="https://lovable.dev/projects/4a3c6d0c-9f3f-4353-b18a-e636e6ec746a" />
     <Hosts>
         <Host Name="Presentation" />
     </Hosts>
     <DefaultSettings>
-        <SourceLocation DefaultValue="https://localhost:8080" />
+        <SourceLocation DefaultValue="https://lovable.dev/projects/4a3c6d0c-9f3f-4353-b18a-e636e6ec746a" />
     </DefaultSettings>
     <Permissions>ReadWriteDocument</Permissions>
 </OfficeApp>
