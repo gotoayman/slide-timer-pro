@@ -15,6 +15,14 @@ export const TimerTaskPane = () => {
 
   const handleInsertTimer = async (minutes: number) => {
     try {
+      // Ensure we're in a PowerPoint context
+      await Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, (result) => {
+        if (result.status === Office.AsyncResultStatus.Failed) {
+          throw new Error('Failed to access PowerPoint context');
+        }
+      });
+
+      // Insert the timer shape
       await PowerPoint.run(async (context) => {
         const slide = context.presentation.getActiveSlide();
         // Add a shape to hold the timer
